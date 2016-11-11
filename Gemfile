@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 gem 'rails', '5.0.0.1'
 
@@ -36,7 +35,10 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 # rails-assets.org
-gem 'rails-assets-bootstrap'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap'
+  gem 'rails-assets-bootstrap-datepicker'
+end
 
 group :development do
 

@@ -1,0 +1,15 @@
+defaults: &defaults
+  service_name: 宅建士試験サプリ
+  #api_url: 'http://localhost:3000/api/v1/'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+staging:
+  <<: *defaults
