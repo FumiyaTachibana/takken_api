@@ -1,0 +1,71 @@
+<!-- 中央コンテンツ -->
+<h1>Web::Home#index</h1>
+<p>Find me in app/views/web/home/index.html.erb</p>
+<h4>
+  ホームに表示するメニューは、<br>
+  ・基本事項<br>
+  ・要点整理<br>
+  ・◯✕問題集<br>
+  ・過去問題集<br>
+  ・用語集<br>
+  ・スクール<br>
+  として、ヘッダーのメニューを消すか。<br><br>
+
+  それか、「試験まであと何日」として、ヘッダーにメニューを残したまま、カレンダーのみを表示するか。
+</h4>
+
+<hr>
+
+<button class="btn btn-ls btn-primary active">・権利関係</button><br><br>
+<button class="btn btn-ls btn-primary active">・法令上の制限</button><br><br>
+<button class="btn btn-ls btn-primary active">・宅建業法</button><br><br>
+<button class="btn btn-ls btn-primary active">・税その他</button><br><br>
+
+
+<!-- 左サイドバーコンテンツ -->
+<% content_for :left_sidebar do %>
+<div>
+  <h2>サイドバー<h2>
+</div>
+<div>
+  <p>カレンダー差し込み</p>
+  <p>ニュース</p>
+  <p>申し込み期限が迫っている資格</p>
+</div>
+<% end %>
+
+
+<!-- 右サイドバーコンテンツ -->
+<% content_for :right_sidebar do %>
+<div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+<% end %>

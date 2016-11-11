@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TakkenApi</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag    'web', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'web' %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="masthead">
+      <h3 class="text-muted"><%= link_to '宅建士試験サプリ', web_root_path %></h3>
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><%= link_to '基本事項', web_root_path %></li>
+            <li class="active"><%= link_to '要点整理', web_root_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">◯✕正誤問題集 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">権利関係</a><%#= link_to '権利関係', situations_path %></li>
+                <li><a href="#">法令上の制限</a><%#= link_to '法令上の制限', comments_path %></li>
+                <li><a href="#">宅建業法</a><%#= link_to '宅建業法', situations_path %></li>
+                <li><a href="#">税その他</a><%#= link_to '税その他', comments_path %></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">過去問題集 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">2016年（平成28年度）</a><%#= link_to '国家資格', situations_path %></li>
+                <li><a href="#">2015年（平成27年度）</a><%#= link_to '民間資格', comments_path %></li>
+                <li><a href="#">2014年（平成26年度）</a></li>
+                <li><a href="#">2013年（平成25年度）</a></li>
+                <li><a href="#">2012年（平成24年度）</a></li>
+                <li><a href="#">2011年（平成23年度）</a></li>
+                <li><a href="#">2010年（平成22年度）</a></li>
+                <li><a href="#">2009年（平成21年度）</a></li>
+              </ul>
+            </li>
+            <li><a href="#">用語集</a></li>
+            <li><a href="#">スクール・通信講座</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+    </div>
+
+    <div class="row">
+      <!-- ホーム画面 -->
+      <% if controller_name != 'home' %>
+
+        <!-- 中央コンテンツ -->
+        <div class="col-sm-12">
+          <%= yield %>
+        </div>
+
+      <!-- ホーム画面以外 -->
+      <% else %>
+        <!-- 左サイドバー -->
+        <div class="col-sm-2">
+          <%= yield :left_sidebar %>
+        </div>
+
+        <!-- 中央コンテンツ -->
+        <div class="col-sm-7">
+          <%= yield %>
+        </div>
+
+        <!-- 右サイドバー -->
+        <div class="col-sm-3">
+          <%= yield :right_sidebar %>
+        </div>
+      <% end %>
+    </div>
+
+    <%# footer%>
+
+  </div>
+
+</body>
+</html>
