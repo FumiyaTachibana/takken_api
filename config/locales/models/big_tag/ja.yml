@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      big_tag: '大タグ（分野タグ）'
+    attributes:
+      analysis_converter_mapping:
+        id: 'ID'
+        name: 'タグ名'

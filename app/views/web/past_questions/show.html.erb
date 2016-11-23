@@ -1,0 +1,104 @@
+<h2><%= @year_tag.year %>過去問題</h2>
+<h1>Web::PastQuestions#show</h1>
+<p>Find me in app/views/web/past_questions/show.html.erb</p>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <% @past_questions.each.with_index(1) do |past_question, index| %>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            問<%= index %>. <%= past_question.content %><br><!-- 問題文 -->
+            分野：<%= past_question.big_tag.name %><br><!-- 大タグ -->
+            科目：<%= past_question.middle_tags.pluck(:name) %><br><!-- 中タグ -->
+            キーワード：<%= past_question.small_tags.pluck(:name) %><!-- 少タグ -->
+            <%# binding.pry %>
+          </a>
+        </h4>
+      </div>
+
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <% past_question.choices.each.with_index(1) do |choice, index| %>
+            <!-- Button trigger modal -->
+            <div class="list-group">
+              <a class="list-group-item" data-toggle="modal" data-target="#myModal" data-whatever="@mbo">
+                <%= index %>. <%= choice.content %><!-- 選択肢 -->
+              </a>
+            </div>
+
+            <!-- modal -->
+            <!-- TODO modalの解説表示のバグを修正する -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><%= choice.judgement %></h4><!-- 正誤判定 -->
+                  </div>
+                  <div class="modal-body">
+                    <p>【解説】</p>
+                    <p><%= choice.description %></p><!-- 解答解説 -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal fade-->
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<!-- 左サイドバーコンテンツ -->
+<% content_for :left_sidebar do %>
+<div>
+  <h2>サイドバー<h2>
+</div>
+<div>
+  <p>カレンダー差し込み</p>
+  <p>ニュース</p>
+  <p>申し込み期限が迫っている資格</p>
+</div>
+<% end %>
+
+
+<!-- 右サイドバーコンテンツ -->
+<% content_for :right_sidebar do %>
+<div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Facebook</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+<% end %>
