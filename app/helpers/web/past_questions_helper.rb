@@ -1,0 +1,2 @@
+module Web::PastQuestionsHelper
+end

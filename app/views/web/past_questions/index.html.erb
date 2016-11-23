@@ -1,46 +1,46 @@
 <!-- 中央コンテンツ -->
-<h1>トップページ（ホーム）</h1>
-<h1>Web::Home#index</h1>
-<p>Find me in app/views/web/home/index.html.erb</p>
-<h4>
-  以下に表示した場合、ヘッダーのメニューを消すか。<br><br>
-
-  もしくは、「試験まであと何日」として、ヘッダーにメニューを残したまま、カレンダーを表示するか。
-</h4>
+<h1>過去問題集</h1>
+<h4>Web::PastQuestions#index</h4>
+<p>Find me in app/views/web/past_questions/index.html.erb</p>
 
 <hr>
+<!-- タブパネル -->
+<div role="tabpanel" class="nav-tabs-custom">
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+    <li role="presentation" class="active"><%= link_to '年度別', web_past_questions_path(anchor: :years), 'data-toggle' => 'tab' %></li>
+    <li role="presentation"><%= link_to '分野別', web_past_questions_path(anchor: :bunya), 'data-toggle' => 'tab' %></li>
+  </ul>
 
-<div class="bs-callout bs-callout-danger">
-  <%= link_to '教科書', web_root_path, class: 'btn btn-danger btn-lg btn-block' %>
-</div>
+  <div class="tab-content">
+    <!-- 年度別 -->
+    <% @year_tags.reverse_each do |year_tag| %>
+      <div role="tabpanel" class="tab-pane active" id="years">
+        <div class="bs-callout bs-callout-default">
+          <%= link_to "#{year_tag.year}", web_past_question_path(year_tag), class: 'btn btn-default btn-lg btn-block' %>
+        </div>
+      </div>
+    <% end %>
 
-<div class="bs-callout bs-callout-primary">
-  <%= link_to '要点整理', web_root_path, class: 'btn btn-primary btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-success">
-  <%= link_to '◯✕正誤問題集', web_root_path, class: 'btn btn-success btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-warning">
-  <%= link_to '過去問題集', web_root_path, class: 'btn btn-warning btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-default">
-  <%= link_to '用語集', web_root_path, class: 'btn btn-default btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-default">
-  <%= link_to 'スクール', web_root_path, class: 'btn btn-default btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-default">
-  <%= link_to 'Contact', web_root_path, class: 'btn btn-default btn-lg btn-block' %>
+    <!-- 分野別 -->
+    <div role="tabpanel" class="tab-pane" id="bunya">
+      <!-- TODO ルーティング周りを修正する -->
+      <div class="bs-callout bs-callout-danger">
+        <%= link_to '権利関係', web_root_path, class: 'btn btn-danger btn-lg btn-block' %>
+      </div>
+      <div class="bs-callout bs-callout-primary">
+        <%= link_to '法令上の制限', web_root_path, class: 'btn btn-primary btn-lg btn-block' %>
+      </div>
+      <div class="bs-callout bs-callout-success">
+        <%= link_to '宅建業法', web_root_path, class: 'btn btn-success btn-lg btn-block' %>
+      </div>
+      <div class="bs-callout bs-callout-warning">
+        <%= link_to '税その他', web_root_path, class: 'btn btn-warning btn-lg btn-block' %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <hr>
-
-<h4>アプリが出来たら、アプリの紹介をする。</h4>
 
 <!-- 左サイドバーコンテンツ -->
 <% content_for :left_sidebar do %>

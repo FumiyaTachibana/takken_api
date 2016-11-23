@@ -1,0 +1,2 @@
+module Web::OrganizePointsHelper
+end

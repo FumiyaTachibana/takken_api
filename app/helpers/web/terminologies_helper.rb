@@ -1,0 +1,2 @@
+module Web::TerminologiesHelper
+end

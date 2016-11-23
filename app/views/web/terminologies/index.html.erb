@@ -1,46 +1,49 @@
-<!-- 中央コンテンツ -->
-<h1>トップページ（ホーム）</h1>
-<h1>Web::Home#index</h1>
-<p>Find me in app/views/web/home/index.html.erb</p>
-<h4>
-  以下に表示した場合、ヘッダーのメニューを消すか。<br><br>
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>用語集</h1>
+    <h3>Web::Terminologies#index</h3>
+    <p>Find me in app/views/web/terminologies/index.html.erb</p>
+  </section>
 
-  もしくは、「試験まであと何日」として、ヘッダーにメニューを残したまま、カレンダーを表示するか。
-</h4>
+  <hr>
+
+  <section class="content-body">
+    <div class="box-wrapper">
+      <div class="box-header">
+        <h2 class="box-title">一覧</h2>
+      </div>
+
+      <div class="box-body table-responsive">
+        <%#= paginate @users %>
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>分野（大タグ）</th>
+              <th>用語</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @terminologies.each do |terminology| %>
+              <tr>
+                <td><%= terminology.id %></td>
+                <td><%= terminology.big_tag.name %></td>
+                <td><%= terminology.word %></td>
+                <td><%= link_to '詳しく', web_terminology_path(terminology), class: 'btn btn-default' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%#= paginate @users %>
+      </div>
+    </div>
+  </section>
+</div>
 
 <hr>
-
-<div class="bs-callout bs-callout-danger">
-  <%= link_to '教科書', web_root_path, class: 'btn btn-danger btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-primary">
-  <%= link_to '要点整理', web_root_path, class: 'btn btn-primary btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-success">
-  <%= link_to '◯✕正誤問題集', web_root_path, class: 'btn btn-success btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-warning">
-  <%= link_to '過去問題集', web_root_path, class: 'btn btn-warning btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-default">
-  <%= link_to '用語集', web_root_path, class: 'btn btn-default btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-default">
-  <%= link_to 'スクール', web_root_path, class: 'btn btn-default btn-lg btn-block' %>
-</div>
-
-<div class="bs-callout bs-callout-default">
-  <%= link_to 'Contact', web_root_path, class: 'btn btn-default btn-lg btn-block' %>
-</div>
-
-<hr>
-
-<h4>アプリが出来たら、アプリの紹介をする。</h4>
 
 <!-- 左サイドバーコンテンツ -->
 <% content_for :left_sidebar do %>
