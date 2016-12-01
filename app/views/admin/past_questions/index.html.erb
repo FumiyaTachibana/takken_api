@@ -1,3 +1,55 @@
-<!-- 過去問題管理 -->
-<h1>Admin::PastQuestions#index</h1>
-<p>Find me in app/views/admin/past_questions/index.html.erb</p>
+<!-- 管理側 / 過去問年度一覧 -->
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      【過去問題集管理】
+      <!--
+        <div class="box-tools pull-right">
+          <%#= search_form_for @search, html: { class: 'form-inline' } do |f| %>
+            <%#= f.search_field :profile_name_cont, class: 'form-control', placeholder: '名前' %>
+            <%#= f.submit t("helpers.submit.search"), class: 'btn btn-primary' %>
+          <%# end %>
+        </div>
+      -->
+    </h1>
+  </section>
+
+  <hr>
+
+  <section class="content-body">
+    <div class="box-wrapper">
+      <div class="box-header">
+        <h2 class="box-title">年度別 過去問一覧</h2>
+      </div>
+
+      <div class="box-body table-responsive">
+        <%#= paginate @users %>
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th><%= t("activerecord.attributes.year_tag.id") %></th>
+              <th><%= t("activerecord.attributes.year_tag.year") %></th>
+              <th><%= t("activerecord.attributes.year_tag.updated_at") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @year_tags.reverse_each do |year| %>
+              <tr>
+                <td><%= year.id %></td>
+                <td><%= year.year %></td>
+                <td><%= l year.updated_at.in_time_zone('Tokyo') %></td>
+                <td>
+                  <%= link_to '詳細', admin_past_question_by_year_past_questions_path(year), class: 'btn btn-default' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%#= paginate @users %>
+      </div>
+    </div>
+  </section>
+</div>

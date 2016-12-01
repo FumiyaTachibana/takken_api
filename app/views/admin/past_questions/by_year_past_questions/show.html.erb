@@ -1,0 +1,56 @@
+<!-- 管理側 / 過去問詳細 -->
+<h1><%= @year_tag.year %>問<%= @index %>. 過去問題詳細</h1>
+<h3>Admin::PastQuestions::ByYearPastQuestions#show</h3>
+<p>Find me in app/views/admin/past_questions/by_year_past_questions/show.html.erb</p>
+
+<p> <%= link_to '年度別', admin_past_questions_path %> ->
+    <%= link_to "#{@year_tag.year}過去問題", :back %> ->
+    問<%= @index %>. 過去問題詳細
+</p>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h4>問<%= @index %>. <%= big_tag_label_color @past_question.big_tag %></h4><!-- 大タグラベル -->
+            <%= @past_question.content %><br><!-- 問題文 -->
+          </a>
+        </h4>
+      </div>
+
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <!-- ## TODO ラベルよりボタンリンクでリンク先に飛ぶ方が使いやすい気がするので検討 -->
+          <!-- 中タグラベル -->
+          <h5>科目：<%= tags_label_color @middle_tags %></h5>
+          <!-- 小タグラベル -->
+          <h5>キーワード：<%= tags_label_color @small_tags %></h5>
+
+          <hr>
+
+          <p>【選択肢】</p>
+          <% @past_question.choices.each.with_index(1) do |choice, index| %>
+            <!-- Button trigger modal -->
+            <div class="list-group">
+              <a class="list-group-item" data-toggle="modal" data-target="#myModal" data-whatever="@mbo">
+                <%= index %>. <%= choice.content %><!-- 選択肢 -->
+              </a>
+            </div>
+          <% end %>
+
+          <hr>
+
+          <p>【解答】</p>
+          <% @past_question.choices.each.with_index(1) do |choice, index| %>
+            <!-- Button trigger modal -->
+            <div class="list-group">
+              <a class="list-group-item" data-toggle="modal" data-target="#myModal" data-whatever="@mbo">
+                <%= index %>. <%= choice.description %><!-- 判定 -->
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>

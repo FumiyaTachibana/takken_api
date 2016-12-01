@@ -12,7 +12,6 @@
             分野：<%= past_question.big_tag.name %><br><!-- 大タグ -->
             科目：<%= past_question.middle_tags.pluck(:name) %><br><!-- 中タグ -->
             キーワード：<%= past_question.small_tags.pluck(:name) %><!-- 少タグ -->
-            <%# binding.pry %>
           </a>
         </h4>
       </div>

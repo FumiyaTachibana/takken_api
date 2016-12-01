@@ -1,10 +1,10 @@
 ja:
   activerecord:
     models:
-      big_tag: '分野タグ'
+      year_tag: '年度タグ'
     attributes:
-      big_tag:
+      year_tag:
         id: 'ID'
-        name: 'タグ名'
+        year: '年度名'
         created_at: '登録日時'
         updated_at: '更新日時'

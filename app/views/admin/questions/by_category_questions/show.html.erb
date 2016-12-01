@@ -1,0 +1,57 @@
+<!-- 管理側 / ◯✕正誤問題詳細 -->
+<h1>問<%= @index %>. ◯✕正誤問題詳細 /【<%= @category.name %>】</h1>
+<h3>Admin::Questions::ByCategoryQuestions#show</h3>
+<p>Find me in app/views/admin/questions/by_category_questions/show.html.erb</p>
+
+<p> <%= link_to "◯✕正誤問題管理 /【#{@category.name}】", :back %> ->
+    問<%= @index %>. ◯✕正誤問題詳細
+</p>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <h4>問<%= @index %>. <%= big_tag_label_color @question.big_tag %></h4><!-- 大タグラベル -->
+            <%= @question.content %><br><!-- 問題文 -->
+          </a>
+        </h4>
+      </div>
+
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <!-- ## TODO ラベルよりボタンリンクでリンク先に飛ぶ方が使いやすい気がするので検討 -->
+          <!-- 中タグラベル -->
+          <h5>科目：<%= tags_label_color @middle_tags %></h5>
+          <!-- 小タグラベル -->
+          <h5>キーワード：<%= tags_label_color @small_tags %></h5>
+
+          <hr>
+
+          <p>【選択肢】</p>
+          <% @question.choices.each.with_index(1) do |choice, index| %>
+            <!-- Button trigger modal -->
+            <div class="list-group">
+              <a class="list-group-item" data-toggle="modal" data-target="#myModal" data-whatever="@mbo">
+                <%= index %>. <%= choice.content %><!-- 選択肢 -->
+              </a>
+            </div>
+          <% end %>
+
+          <hr>
+
+          <p>【解答】</p>
+          <% @question.choices.each.with_index(1) do |choice, index| %>
+            <!-- Button trigger modal -->
+            <div class="list-group">
+              <a class="list-group-item" data-toggle="modal" data-target="#myModal" data-whatever="@mbo">
+                <%= index %>. <%= choice.content %><!-- 判定 -->
+                <%= choice.description %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>

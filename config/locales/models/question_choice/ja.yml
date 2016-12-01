@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      question_choice: '◯✕正誤問題選択肢'
+    attributes:
+      question_choice:
+        id: 'ID'
+        question_id: '◯✕問題ID'
+        content: '選択肢'
+        judgement: '正誤判定'
+        description: '解説'
+        created_at: '登録日時'
+        updated_at: '更新日時'
