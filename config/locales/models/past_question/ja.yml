@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      past_question: '過去問題'
+    attributes:
+      past_question:
+        id: 'ID'
+        year_tag_id: '年度'
+        big_tag_id: '分野タグ'
+        importance: '重要度'
+        difficulty: '難易度'
+        content: '問題文'
+        created_at: '登録日時'
+        updated_at: '更新日時'

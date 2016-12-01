@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  namespace :web do
-    namespace :organize_points do
-      namespace :civil_codes do
-        get 'restricted_acting_capacity_persons/index'
-      end
+  namespace :admin do
+    namespace :questions do
+      get 'by_category_questions/index'
+    end
+  end
+
+  namespace :admin do
+    namespace :questions do
+      get 'by_category_questions/show'
     end
   end
 
@@ -93,9 +97,44 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'home#index'
 
-    resources :home, only: :index # トップページ
-    resources :quizzes, only: :index # ◯✕正誤問題管理
-    resources :past_questions, only: :index # 過去問題集管理
+    # トップページ
+    resources :home, only: :index
+
+    # ◯✕正誤問題管理(年度別)
+    resources :questions, param: :year_tag_id, only: :index do
+      scope module: :questions do
+        resources :by_year_questions, only: [:index, :show]
+      end
+    end
+
+    # ◯✕正誤問題管理(分野別)
+    resources :questions, param: :big_tag_id, only: :index do
+      scope module: :questions do
+        resources :by_category_questions, only: [:index, :show]
+      end
+    end
+
+    # 過去問管理(年度別)
+    resources :past_questions, param: :year_tag_id, only: :index do
+      scope module: :past_questions do
+        resources :by_year_past_questions, only: [:index, :show]
+        #resources :by_category_past_questions, only: [:index, :show]
+      end
+    end
+
+    # 過去問管理(分野別)
+    #resources :past_questions, param: :big_tag_id, only: :index do
+    #  scope module: :past_questions do
+    #    resources :by_category_past_questions, only: [:index, :show]
+    #  end
+    #end
+
+    # 用語集管理(分野別)
+    resources :terminologies, param: :big_tag_id, only: :index do
+      scope module: :terminologies do
+        resources :by_category_terminologies, only: [:index, :show]
+      end
+    end
 
     devise_for :admin_users,
                path: :users,

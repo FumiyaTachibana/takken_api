@@ -1,0 +1,65 @@
+<%= link_to "戻る", :back %>
+
+<!-- 用語集管理 -->
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <%# binding.pry %>
+      用語集管理 /【<%= @category_name %>】
+
+      <div class="box-tools pull-right">
+        <%#= search_form_for @search, html: { class: 'form-inline' } do |f| %>
+          <%#= f.search_field :profile_name_cont, class: 'form-control', placeholder: '名前' %>
+          <%#= f.submit t("helpers.submit.search"), class: 'btn btn-primary' %>
+        <%# end %>
+      </div>
+    </h1>
+    <h3>Admin::Terminologies::ByCategoryTerminologies#index</h3>
+    <p>Find me in app/views/admin/terminologies/by_category_terminologies/index.html.erb</p>
+  </section>
+
+  <hr>
+  
+  <section class="content-body">
+    <div class="box-wrapper">
+      <div class="box-header">
+        <h2 class="box-title">一覧</h2>
+      </div>
+
+      <div class="box-body table-responsive">
+        <%#= paginate @users %>
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th><%= t("activerecord.attributes.terminology.id") %></th>
+              <th><%= t("activerecord.attributes.terminology.big_tag_id") %></th>
+              <th><%= t("activerecord.attributes.terminology.middle_tag_id") %></th>
+              <th><%= t("activerecord.attributes.terminology.small_tag_id") %></th>
+              <th><%= t("activerecord.attributes.terminology.word") %></th>
+              <th><%= t("activerecord.attributes.terminology.description") %></th>
+              <th><%= t("activerecord.attributes.terminology.updated_at") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @by_category_terminologies.each do |terminology| %>
+              <tr>
+                <td><%= terminology.id %></td>
+                <td><%= terminology.big_tag.name %></td>
+                <td><%= terminology.middle_tag.name %></td>
+                <td><%= terminology.small_tag.name %></td>
+                <td><%= terminology.word %></td>
+                <td><%= terminology.description %></td>
+                <td><%= l terminology.updated_at.in_time_zone('Tokyo') %></td>
+                <td><%#= link_to '詳細', admin_terminology_path(terminology), class: 'btn btn-default' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%#= paginate @users %>
+      </div>
+    </div>
+  </section>
+</div>

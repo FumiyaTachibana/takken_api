@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      question: '◯✕正誤問題'
+    attributes:
+      question:
+        id: 'ID'
+        year_tag_id: '年度'
+        big_tag_id: '分野'
+        importance: '重要度'
+        difficulty: '難易度'
+        content: 'タグ名'
+        created_at: '登録日時'
+        updated_at: '更新日時'

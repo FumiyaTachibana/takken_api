@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      past_question_choice: '過去問選択肢'
+    attributes:
+      past_question_choice:
+        id: 'ID'
+        past_question_id: '過去問ID'
+        content: '選択肢'
+        judgement: '正誤判定'
+        description: '解説'
+        created_at: '登録日時'
+        updated_at: '更新日時'

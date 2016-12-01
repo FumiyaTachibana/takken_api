@@ -1,10 +1,12 @@
 ja:
   activerecord:
     models:
-      big_tag: '分野タグ'
+      small_tag: 'キーワードタグ'
     attributes:
-      big_tag:
+      small_tag:
         id: 'ID'
+        big_tag_id: '分野'
+        middle_tag_id: '科目'
         name: 'タグ名'
         created_at: '登録日時'
         updated_at: '更新日時'

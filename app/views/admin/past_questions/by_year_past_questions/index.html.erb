@@ -1,0 +1,79 @@
+<!-- 管理側 / 過去問一覧 -->
+<div class="content-wrapper">
+  <section class="content-header">
+    <p> <%= link_to '年度別', :back %> ->
+        <%= "#{@year_tag.year}" %>過去問題
+    </p>
+      <%= link_to '戻る', :back, class: 'btn btn-primary' %>
+    <h1>
+      <%= "#{@year_tag.year}" %>過去問題管理
+
+      <div class="box-tools pull-right">
+        <%#= search_form_for @search, html: { class: 'form-inline' } do |f| %>
+          <%#= f.search_field :profile_name_cont, class: 'form-control', placeholder: '名前' %>
+          <%#= f.submit t("helpers.submit.search"), class: 'btn btn-primary' %>
+        <%# end %>
+      </div>
+    </h1>
+    <h3>Admin::PastQuestions::ByYearPastQuestions#index</h3>
+    <p>Find me in app/views/admin/past_questions/by_year_past_questions/index.html.erb</p>
+  </section>
+
+  <hr>
+  
+  <section class="content-body">
+    <div class="box-wrapper">
+      <div class="box-header">
+        <h2 class="box-title">一覧</h2>
+      </div>
+
+      <div class="box-body table-responsive">
+        <%#= paginate @users %>
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>問.</th>
+              <th><%= t("activerecord.attributes.past_question.id") %></th>
+              <th><%= t("activerecord.attributes.past_question.year_tag_id") %></th>
+              <th><%= t("activerecord.attributes.past_question.big_tag_id") %></th>
+              <th>科目タグ</th>
+              <th>キーワードタグ</th>
+              <th><%= t("activerecord.attributes.past_question.importance") %></th>
+              <th><%= t("activerecord.attributes.past_question.difficulty") %></th>
+              <th><%= t("activerecord.attributes.past_question.content") %></th>
+              <th><%= t("activerecord.attributes.past_question_choice.content") %></th>
+              <th><%= t("activerecord.attributes.past_question.updated_at") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @by_year_past_questions.each.with_index(1) do |past_question, index| %>
+              <tr>
+                <td><%= index %></td>
+                <td><%= past_question.id %></td>
+                <td><%= past_question.year_tag.year %></td>
+                <td><%= big_tag_label_color past_question.big_tag %></td>
+                  <td><%= tags_label_color past_question.middle_tags %></td>
+                  <td><%= tags_label_color past_question.small_tags %></td>
+                <td><%= past_question.importance %></td>
+                <td><%= past_question.difficulty %></td>
+                <td><%= past_question.content %></td>
+                <td>
+                  <% past_question.choices.each.with_index(1) do |choice, index| %>
+                    <%= index %>.<%= choice.content %>
+                    <hr>
+                  <% end %>
+                </td>
+                <td><%= l past_question.updated_at.in_time_zone('Tokyo') %></td>
+                <td><%= link_to '詳細', admin_past_question_by_year_past_question_path(@year_tag, past_question, index), class: 'btn btn-default' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%#= paginate @users %>
+      </div>
+    </div>
+  </section>
+</div>

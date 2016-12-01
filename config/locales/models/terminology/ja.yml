@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      terminology: '用語集'
+    attributes:
+      terminology:
+        id: 'ID'
+        big_tag_id: '分野タグ'
+        middle_tag_id: '科目タグ'
+        small_tag_id: 'キーワードタグ'
+        word: '名前'
+        description: '解説'
+        created_at: '登録日時'
+        updated_at: '更新日時'

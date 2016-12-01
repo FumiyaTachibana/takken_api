@@ -1,5 +1,5 @@
 defaults: &defaults
-  service_name: 宅建士試験サプリ
+  service_name: 宅建士試験サプリ2017
   #api_url: 'http://localhost:3000/api/v1/'
 
 development:

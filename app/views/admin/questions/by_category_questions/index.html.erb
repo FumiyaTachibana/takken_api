@@ -1,0 +1,79 @@
+<!-- 管理側 / ◯✕正誤問題管理 -->
+<div class="content-wrapper">
+  <section class="content-header">
+    <p> <%= link_to '年度別', :back %> ->
+        ◯✕正誤問題管理 /【<%= @category.name %>】
+    </p>
+      <%= link_to '戻る', :back, class: 'btn btn-primary' %>
+    <h1>
+      ◯✕正誤問題管理 /【<%= @category.name %>】
+
+      <div class="box-tools pull-right">
+        <%#= search_form_for @search, html: { class: 'form-inline' } do |f| %>
+          <%#= f.search_field :profile_name_cont, class: 'form-control', placeholder: '名前' %>
+          <%#= f.submit t("helpers.submit.search"), class: 'btn btn-primary' %>
+        <%# end %>
+      </div>
+    </h1>
+    <h3>Admin::Questions::ByCategoryQuestions#index</h3>
+    <p>Find me in app/views/admin/questions/by_category_questions/index.html.erb</p>
+  </section>
+
+  <hr>
+  
+  <section class="content-body">
+    <div class="box-wrapper">
+      <div class="box-header">
+        <h2 class="box-title">一覧</h2>
+      </div>
+
+      <div class="box-body table-responsive">
+        <%#= paginate @users %>
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>問.</th>
+              <th><%= t("activerecord.attributes.question.id") %></th>
+              <th><%= t("activerecord.attributes.question.year_tag_id") %></th>
+              <th><%= t("activerecord.attributes.question.big_tag_id") %></th>
+              <th>科目タグ</th>
+              <th>キーワードタグ</th>
+              <th><%= t("activerecord.attributes.question.importance") %></th>
+              <th><%= t("activerecord.attributes.question.difficulty") %></th>
+              <th><%= t("activerecord.attributes.question.content") %></th>
+              <th><%= t("activerecord.attributes.question_choice.content") %></th>
+              <th><%= t("activerecord.attributes.question.updated_at") %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @by_category_questions.each.with_index(1) do |question, index| %>
+              <tr>
+                <td><%= index %></td>
+                <td><%= question.id %></td>
+                <td><%= question.year_tag.year %></td>
+                <td><%= big_tag_label_color question.big_tag %></td>
+                  <td><%= tags_label_color question.middle_tags %></td>
+                  <td><%= tags_label_color question.small_tags %></td>
+                <td><%= question.importance %></td>
+                <td><%= question.difficulty %></td>
+                <td><%= question.content %></td>
+                <td>
+                  <% question.choices.each.with_index(1) do |choice, index| %>
+                    <%= index %>.<%= choice.content %>
+                    <hr>
+                  <% end %>
+                </td>
+                <td><%= l question.updated_at.in_time_zone('Tokyo') %></td>
+                <td><%= link_to '詳細', admin_question_by_category_question_path(@category, question, index), class: 'btn btn-warning' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <%#= paginate @users %>
+      </div>
+    </div>
+  </section>
+</div>
