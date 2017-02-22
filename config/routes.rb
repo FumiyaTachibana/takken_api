@@ -1,17 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    namespace :questions do
-      get 'by_category_questions/index'
-    end
-  end
-
-  namespace :admin do
-    namespace :questions do
-      get 'by_category_questions/show'
-    end
-  end
-
-  # ウェブ側
+  # Web側
   namespace :web, path: '/' do
     root to: 'home#index' # トップページ
 
@@ -24,66 +12,105 @@ Rails.application.routes.draw do
     resources :organize_points, only: :index # 分野一覧（大タグ）
     namespace :organize_points, only: :index do
       # 権利関係
-      resources :civil_codes, only: :index # 科目一覧（中タグ）
+      resources :civil_codes, only: :index # 権利関係科目一覧（中タグ）
       namespace :civil_codes, only: :index do
-        # 制限行為能力者
-        resources :restricted_acting_capacity_persons, only: :index do
-          collection do # 制限行為能力者の中の説明
-            get :word # 用語
-            get :ability # 能力まとめ
-          end
-        end
-        # 代理
-        #resources :restricted_acting_capacity_persons, only: :index do
-        #  collection do # 代理の中の説明
-        #    get :word # 用語
-        #    get :ability # 能力まとめ
-        #  end
+        # 科目一覧
+        resources :restricted_acting_capacity_persons, only: :index #do # 制限行為能力者
+          #collection do
+          #  get :word # 用語
+          #  get :ability # 能力まとめ
+          #end
         #end
-        # 意思表示
-        #resources :restricted_acting_capacity_persons, only: :index do
-        # 時効
-        #resources :restricted_acting_capacity_persons, only: :index do
-        # 抵当権
-        #resources :restricted_acting_capacity_persons, only: :index do
-        # 連帯責任
-        #resources :restricted_acting_capacity_persons, only: :index do
-        #...
+        resources :agency, only: :index # 代理
+        #resources :persons, only: :index # 意思表示
+        #resources :persons, only: :index # 時効
+        #resources :persons, only: :index # 抵当権
+        #resources :persons, only: :index # 連帯債務
+        #resources :persons, only: :index # 保証
+        #resources :persons, only: :index # 債権譲渡
+        #resources :persons, only: :index # 債務不履行
+        #resources :persons, only: :index # 契約解除
+        #resources :persons, only: :index # 担保責任
+        #resources :persons, only: :index # 相殺
+        #resources :persons, only: :index # 委任
+        #resources :persons, only: :index # 敷金
+        #resources :persons, only: :index # 借地借家法(借地)
+        #resources :persons, only: :index # 借地借家法(借家)
+        #resources :persons, only: :index # 相続
+        #resources :persons, only: :index # 共有
+        #resources :persons, only: :index # 区分所有法
+        #resources :persons, only: :index # 物権変動
+        #resources :persons, only: :index # 不動産登記法
+        #resources :persons, only: :index # 不法行為
+        #resources :persons, only: :index # 相隣関係
+        #resources :persons, only: :index # 担保物権
       end
 =begin
       # 法令上の制限
-      #resources :legal_restrictions, only: :index # 科目一覧（中タグ）
-      #namespace :legal_restrictions, only: :index do
-        ### 科目一覧
+      resources :legal_restrictions, only: :index # 法令上の制限科目一覧（中タグ）
+      namespace :legal_restrictions, only: :index do
+        # 科目一覧
         resources :urban_planning_laws, only: :index do # 都市計画法
-          collection do
-            get :usage_areas # 用途地域
-          end
-        end
-      #end
+          #collection do
+          #  get :usage_areas # 用途地域
+          #end
+        #end
+        #resources :agency, only: :index do # 開発許可
+        #resources :persons, only: :index do # 単体
+        #resources :persons, only: :index do # 集合
+        #resources :persons, only: :index do # 確認
+        #resources :persons, only: :index do # 検査
+        #resources :persons, only: :index do # 容積
+        #resources :persons, only: :index do # 建ぺい率
+        #resources :persons, only: :index do # 防火地域
+        #resources :persons, only: :index do # 農地法
+        #resources :persons, only: :index do # 国土利用計画法
+        #resources :persons, only: :index do # 土地区画整理法
+        #resources :persons, only: :index do # 宅地造成等規制法
+      end
 
       # 宅建業法
-      #resources :real_estate_transaction_acts, only: :index # 科目一覧（中タグ）
-      #namespace :real_estate_transaction_acts, only: :index do
-        ### 科目一覧
+      resources :real_estate_transaction_acts, only: :index # 宅建業法科目一覧（中タグ）
+      namespace :real_estate_transaction_acts, only: :index do
+        # 科目一覧
         resources :licenses, only: :index do # 免許
-          collection do
-            get :disqualification_factors # 欠格要因
-          end
-        end
-      #end
-
+          #collection do
+          #  get :disqualification_factors # 欠格要因
+          #end
+        #end
+        #resources :agency, only: :index do # 宅建士
+        #resources :persons, only: :index do # 営業保証金
+        #resources :persons, only: :index do # 保証協会
+        #resources :persons, only: :index do # 誇大広告等の禁止
+        #resources :persons, only: :index do # 媒介契約
+        #resources :persons, only: :index do # 重要事項の説明
+        #resources :persons, only: :index do # 37条書面
+        #resources :persons, only: :index do # 8種制限
+        #resources :persons, only: :index do # 報酬
+        #resources :persons, only: :index do # 監督処分
+        #resources :persons, only: :index do # 住宅瑕疵担保履行法
+      end
 
       # 税その他
-      #resources :tax_and_others, only: :index # 科目一覧（中タグ）
-      #namespace :tax_and_others, only: :index do
-        ### 科目一覧
-        resources :income_taxes, only: :index do # 所得税
-          collection do
-            get :special_deductions # 特別控除
-          end
-        end
-      #end
+      resources :tax_others, only: :index # 税その他科目一覧（中タグ）
+      namespace :tax_others, only: :index do
+        # 科目一覧
+        resources :income_taxes, only: :index do # 所得税(譲渡所得)
+          #collection do
+          #  get :special_deductions # 特別控除
+          #end
+        #end
+        #resources :agency, only: :index do # 不動産取得税
+        #resources :persons, only: :index do # 登録免許税
+        #resources :persons, only: :index do # 印紙税
+        #resources :persons, only: :index do # 固定資産税
+        #resources :persons, only: :index do # 不動産鑑定評価基準
+        #resources :persons, only: :index do # 地価公示法
+        #resources :persons, only: :index do # 景品表示法
+        #resources :persons, only: :index do # 土地
+        #resources :persons, only: :index do # 建物
+        #resources :persons, only: :index do # 住宅金融支援機構法
+      end
 =end
     end
 

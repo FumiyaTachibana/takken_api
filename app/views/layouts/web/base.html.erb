@@ -21,17 +21,20 @@
             <li class="active"><%= link_to '要点整理', web_organize_points_path %></li>
             <li class="active"><%= link_to '◯✕正誤問題集', web_root_path %></li>
             <li class="active"><%= link_to '過去問題集', web_past_questions_path %></li>
-        <!--
+
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">◯✕正誤問題集 <span class="caret"></span></a>
+            
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">テストリンク <span class="caret"></span></a>
+            <!--
+              <class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%#= link_to 'テストリンク', web_organize_points_path %><span class="caret"></span>
+            -->
               <ul class="dropdown-menu">
-                <li><a href="#">権利関係</a><%#= link_to '権利関係', situations_path %></li>
-                <li><a href="#">法令上の制限</a><%#= link_to '法令上の制限', comments_path %></li>
-                <li><a href="#">宅建業法</a><%#= link_to '宅建業法', situations_path %></li>
-                <li><a href="#">税その他</a><%#= link_to '税その他', comments_path %></li>
+                <li><%= link_to '権利関係', web_organize_points_path %></li>
+                <li><%= link_to '法令上の制限', web_organize_points_path %></li>
+                <li><%= link_to '宅建業法', web_past_questions_path %></li>
+                <li><%= link_to '税その他', web_past_questions_path %></li>
               </ul>
             </li>
-        -->
         <!--
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">過去問題集 <span class="caret"></span></a>
