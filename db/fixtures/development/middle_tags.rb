@@ -8,7 +8,7 @@ end
 MiddleTag.seed do |mt|
   mt.id            = 2
   mt.big_tag_id    = 1 # 権利関係
-  mt.name          = '借地借家法（借地）'
+  mt.name          = '借地借家法(借地)'
   mt.importance    = 2
 end
 
@@ -43,7 +43,7 @@ end
 MiddleTag.seed do |mt|
   mt.id            = 7
   mt.big_tag_id    = 4 # 税その他
-  mt.name          = '所得税（譲渡所得）'
+  mt.name          = '所得税(譲渡所得)'
   mt.importance    = 2
 end
 

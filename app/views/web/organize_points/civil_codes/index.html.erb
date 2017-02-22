@@ -1,10 +1,20 @@
 <h1>権利関係（要点整理）</h1>
-  <h2>Web::OrganizePoints::CivilCodes#index</h2>
+<h3>Web::OrganizePoints::CivilCodes#index</h3>
 <p>Find me in app/views/web/organize_points/civil_codes/index.html.erb</p>
 
 <hr>
 
 <h3>【権利関係一覧】</h3>
+<% @middle_tags.each do |middle_tag| %>
+  <p>
+    <%#= middle_tag.name %>
+    <%= organize_points_routing(middle_tag) %>
+    キーワード：<%= tags_label_color middle_tag.small_tags %>
+  </p>
+<% end %>
+<%# binding.pry %>
+<hr>
+
 <p><%= link_to '制限行為能力者', web_organize_points_civil_codes_restricted_acting_capacity_persons_path, class: 'btn btn-default btn-lg btn-block' %></p>
 <p>代理</p>
 <p>意思表示</p>
@@ -29,3 +39,5 @@
 <p>不法行為</p>
 <p>相隣関係</p>
 <p>担保物権</p>
+
+
